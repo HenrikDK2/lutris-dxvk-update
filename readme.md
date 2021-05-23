@@ -11,6 +11,6 @@ This simple script was created for personal usage, but uploaded so others can en
 
 ## Usage
 
-Simply run the script when you want the lastest compiled master from [doitsujin](https://github.com/doitsujin/dxvk/blob/master)
+Simply run the script when you want the lastest compiled master from [doitsujin](https://github.com/doitsujin/dxvk)
 
 Open Lutris, configure your game and click the **Runner options** tab, find **DXVK Version** and type "latest" inside the field.
