@@ -14,7 +14,8 @@ clone (){
         then
             update
         else
-            echo "Lutris DXVK Update: Latest version is already installed"
+            echo -e "\e[1;33m Lutris DXVK Update: Latest version is already installed \e[0m"
+            rm -rf dxvk
         fi
 }
 
@@ -22,13 +23,13 @@ update(){
     cd dxvk
     rm -rf ~/.local/share/lutris/runtime/dxvk/latest/
     ./package-release.sh master ~/.local/share/lutris/runtime/dxvk/latest/ --no-package
-    rm -rf dxvk
     cd ~/.local/share/lutris/runtime/dxvk/latest/dxvk-master
     cp -r x32 ..
     cp -r x64 ..
     cd ..
     rm -rf dxvk-master
     cd $dir
+    rm -rf dxvk
     echo $git_unix > last_update
 }
 
