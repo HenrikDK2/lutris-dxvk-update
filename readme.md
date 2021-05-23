@@ -1,6 +1,7 @@
 # Lutris DXVK Update
 
-This simple script was created for personal usage, but uploaded so others can enjoy it.
+Compiles from [DXVK Master](https://github.com/doitsujin/dxvk) and makes it available for Lutris so you can get the latest hotfixes without waiting for the next release. 
+This simple script was created for personal usage, but uploaded so others can enjoy it. 
 
 ### Requirements:
 
