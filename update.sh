@@ -1,8 +1,11 @@
 #!/bin/sh
 
-dir=$(pwd)
+dir=~/.dxvk_update
 
 clone (){
+    cd ~
+    if [ ! -d ".dxvk_update" ]; then mkdir .dxvk_update; fi
+    cd .dxvk_update
     last_update="$(<last_update)"
     rm -rf dxvk
     git clone https://github.com/doitsujin/dxvk dxvk
