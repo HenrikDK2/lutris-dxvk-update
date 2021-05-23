@@ -4,6 +4,7 @@ This simple script was created for personal usage, but uploaded so others can en
 
 ### Requirements:
 
+- [git](https://git-scm.com/)
 - [wine 3.10](https://www.winehq.org/) or newer
 - [Meson](https://mesonbuild.com/) build system (at least version 0.46)
 - [Mingw-w64](http://mingw-w64.org/) compiler and headers (at least version 8.0)
