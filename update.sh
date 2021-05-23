@@ -1,8 +1,24 @@
 #!/bin/sh
 
-update(){
+dir=$(pwd)
+
+clone (){
+    last_update="$(<last_update)"
     rm -rf dxvk
     git clone https://github.com/doitsujin/dxvk dxvk
+    cd dxvk
+    git_unix="$(git log -1 --format=%ct)000"
+    cd $dir
+    
+    if [ ! -f "last_update" ] || [ $git_unix -gt $last_update ]; 
+        then
+            update
+        else
+            echo "Lutris DXVK Update: Latest version is already installed"
+        fi
+}
+
+update(){
     cd dxvk
     rm -rf ~/.local/share/lutris/runtime/dxvk/latest/
     ./package-release.sh master ~/.local/share/lutris/runtime/dxvk/latest/ --no-package
@@ -12,20 +28,9 @@ update(){
     cp -r x64 ..
     cd ..
     rm -rf dxvk-master
-    echo "$(git log -1 --format=%ct)000" > last_download
+    cd $dir
+    echo $git_unix > last_update
 }
 
-if test -f "last_download";
-    then
-        if [ "$(git log -1 --format=%ct)000" -gt "$(<last_download)" ]; 
-            then
-                update
-            else
-                echo "Lutris DXVK Update: Latest version is already installed"
-        fi
-    else
-        update
-    fi
-
-
+clone
 
