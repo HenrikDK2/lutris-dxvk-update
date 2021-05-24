@@ -1,6 +1,7 @@
 #!/bin/sh
 
-dir=~/.dxvk_update
+tmp_dir=~/.dxvk_update
+lutris_dir=~/.local/share/lutris/runtime/dxvk/latest
 
 clone (){
     cd ~
@@ -11,9 +12,9 @@ clone (){
     git clone https://github.com/doitsujin/dxvk dxvk
     cd dxvk
     git_unix="$(git log -1 --format=%ct)000"
-    cd $dir
+    cd $tmp_dir
     
-    if [ ! -f "last_update" ] || [ $git_unix -gt $last_update ]; 
+    if [ ! -f "last_update" ] || [ ! -d $lutris_dir ] || [ $git_unix -gt $last_update ]; 
         then
             update
         else
@@ -24,14 +25,14 @@ clone (){
 
 update(){
     cd dxvk
-    rm -rf ~/.local/share/lutris/runtime/dxvk/latest/
-    ./package-release.sh master ~/.local/share/lutris/runtime/dxvk/latest/ --no-package
-    cd ~/.local/share/lutris/runtime/dxvk/latest/dxvk-master
+    rm -rf $lutris_dir
+    ./package-release.sh master $lutris_dir --no-package
+    cd "$lutris_dir/dxvk-master"
     cp -r x32 ..
     cp -r x64 ..
     cd ..
     rm -rf dxvk-master
-    cd $dir
+    cd $tmp_dir
     rm -rf dxvk
     echo $git_unix > last_update
 }
